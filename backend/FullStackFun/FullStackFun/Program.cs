@@ -3,12 +3,11 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddControllers(); // ✅ Add this line
+builder.Services.AddControllers(); 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<BowlerDBContext>(options =>
+builder.Services.AddDbContext<BowlerDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("BowlingConnection")));
 
 builder.Services.AddCors();
@@ -26,6 +25,6 @@ app.UseCors(x => x.WithOrigins("http://localhost:3000"));
 
 app.UseHttpsRedirection();
 app.UseAuthorization();
-app.MapControllers(); // ✅ Enable controller routing
+app.MapControllers(); 
 
 app.Run();

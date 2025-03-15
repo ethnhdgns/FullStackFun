@@ -6,34 +6,33 @@ namespace FullStackFun.Data
     public class Bowler
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)] // Ensures ID is not auto-generated
-        public int BowlerID { get; set; } 
-
-        [MaxLength(50)]
-        public string BowlerLastName { get; set; }
-
-        [MaxLength(50)]
-        public string BowlerFirstName { get; set; }
-
-        [MaxLength(1)]
+        public int BowlerId { get; set; }
+        [Required]
+        public string? BowlerFirstName { get; set; }
+        
         public string? BowlerMiddleInit { get; set; }
+        [Required]
+        public string? BowlerLastName { get; set; }
 
-        [MaxLength(50)]
-        public string BowlerAddress { get; set; }
+        [Required]
+        public string? BowlerAddress { get; set; }
+        [Required]
+        public string? BowlerCity { get; set; }
+        [Required]
+        public string? BowlerState { get; set; }
+        [Required]
+        public string? BowlerZip { get; set; }
+        [Required]
+        public string? BowlerPhoneNumber { get; set; }
 
-        [MaxLength(50)]
-        public string BowlerCity { get; set; }
 
-        [MaxLength(2)]
-        public string BowlerState { get; set; }
+        // Foreign Key for Team (no need for [Required] unless it's mandatory)
+        [ForeignKey("Team")]
+        public int TeamId { get; set; }
 
-        [MaxLength(10)]
-        public string BowlerZip { get; set; }
+        [Required]
 
-        [MaxLength(14)]
-        public string BowlerPhoneNumber { get; set; }
-
-        // Foreign Key Reference to Teams table
-        public int TeamID { get; set; }
+        // Navigation property to the Team model
+        public Team Team { get; set; }
     }
 }

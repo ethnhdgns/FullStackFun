@@ -132,4 +132,4 @@
 /Users/ethanhudgins/Desktop/mission_10/FullStackFun/backend/FullStackFun/FullStackFun/obj/Debug/net8.0/FullStackFun.pdb
 /Users/ethanhudgins/Desktop/mission_10/FullStackFun/backend/FullStackFun/FullStackFun/obj/Debug/net8.0/FullStackFun.genruntimeconfig.cache
 /Users/ethanhudgins/Desktop/mission_10/FullStackFun/backend/FullStackFun/FullStackFun/obj/Debug/net8.0/ref/FullStackFun.dll
-/Users/ethanhudgins/Desktop/mission_10/FullStackFun/backend/FullStackFun/FullStackFun/bin/Debug/net8.0/BowlingLeague.sqlite
+/Users/ethanhudgins/Desktop/mission_10/FullStackFun/backend/FullStackFun/FullStackFun/obj/Debug/net8.0/FullStackFun.sourcelink.json

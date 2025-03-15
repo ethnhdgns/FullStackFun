@@ -1,37 +1,35 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
 using FullStackFun.Data;
 
- namespace FullStackFun.Controllers
- {
-     [Route("api/[controller]")]
-     [ApiController]
-     public class BowlersController : ControllerBase
-     {
-         private readonly BowlerDBContext _context;
+[ApiController]
+[Route("api/[controller]")]
+public class BowlersController : ControllerBase
+{
+    private readonly BowlerDbContext _context;
 
-         public BowlersController(BowlerDBContext context)
-         {
-             _context = context;
-         }
+    public BowlersController(BowlerDbContext context)
+    {
+        _context = context;
+    }
 
-         [HttpGet]
-         public IEnumerable<Object> GetBowlers()
-         {
-             var bowlers = _context.Bowlers
-                 .Where(b => b.TeamID == 1 || b.TeamID == 2)
-                 .Select(b => new
-                 {
-                     BowlerName = $"{b.BowlerFirstName} {b.BowlerMiddleInit} {b.BowlerLastName}",
-                     TeamName = b.TeamID,
-                     Address = b.BowlerAddress,
-                     City = b.BowlerCity,
-                     State = b.BowlerState,
-                     Zip = b.BowlerZip,
-                     PhoneNumber = b.BowlerPhoneNumber
-                 }).ToArray();
-             
-             return bowlers;
+    [HttpGet(Name = "GetBowler")]
+    public ActionResult<IEnumerable<Bowler>> Get()
+    {
+        try
+        {
+            var bowlerList = _context.Bowlers
+                .Include(b => b.Team)
+                .Where(b => b.Team != null && (b.Team.TeamName == "Marlins" || b.Team.TeamName == "Sharks"))
+                .ToList();
 
-         }
-     }
- }
+            return Ok(bowlerList);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest($"Error fetching bowlers: {ex.Message}");
+        }
+    }
+}

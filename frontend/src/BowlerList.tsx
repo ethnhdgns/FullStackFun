@@ -13,7 +13,7 @@ function BowlerList () {
         fetchBowler();
     }, []);
 
-
+    
     return(
         <>
         <table>
@@ -25,6 +25,7 @@ function BowlerList () {
                         <th>City</th>
                         <th>State</th>
                         <th>Zip</th>
+                        <th>Phone Number</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -32,11 +33,12 @@ function BowlerList () {
                     bowlers.map((f) => (
                         <tr key={f.bowlerID}>
                             <td>{`${f.bowlerFirstName} ${f.bowlerMiddleInit || ''} ${f.bowlerLastName}`}</td>
-                            <td>{f.teamID}</td>
+                            <td>{f.team?.teamName}</td>
                             <td>{f.bowlerAddress}</td>
                             <td>{f.bowlerCity}</td>
                             <td>{f.bowlerState}</td>
                             <td>{f.bowlerZip}</td>
+                            <td>{f.bowlerPhoneNumber}</td>
                         </tr>
                     ))
                     }
